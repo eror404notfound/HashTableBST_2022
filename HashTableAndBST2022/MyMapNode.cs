@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HashTableAndBST2022
 {
-    class MyMapNode<K, V>
+    public class MyMapNode<K, V>
     {
         public struct KeyValue<k, v>
         {
@@ -15,17 +15,15 @@ namespace HashTableAndBST2022
         }
         private readonly int size;
         private readonly LinkedList<KeyValue<K, V>>[] items;
-
         public MyMapNode(int size)
         {
             this.size = size;
-            //arr=new int[size];
             this.items = new LinkedList<KeyValue<K, V>>[size];
         }
         protected int GetArrayPosition(K key)
         {
-            int hash = key.GetHashCode(); //637362
-            int position = hash % size; // 0 to 4
+            int hash = key.GetHashCode();
+            int position = hash % size;
             return Math.Abs(position);
         }
         public V Get(K key)
@@ -36,7 +34,6 @@ namespace HashTableAndBST2022
                 if (item.Key.Equals(key))
                     return item.Value;
             }
-
             return default(V);
         }
         public void Add(K key, V value)
@@ -96,6 +93,7 @@ namespace HashTableAndBST2022
                 //Console.WriteLine("Removed successfully with key " + foundItem.Key);
             }
         }
+
         protected LinkedList<KeyValue<K, V>> GetLinkedList(int position)
         {
             LinkedList<KeyValue<K, V>> linkedList = items[position]; //0
@@ -106,6 +104,7 @@ namespace HashTableAndBST2022
             }
             return linkedList;
         }
+
         public void Display()
         {
             foreach (var linkedList in items)
