@@ -21,6 +21,7 @@ namespace HashTableAndBST2022
         }
         //intialize variables
         int leftCount; int rightCount;
+        bool result = false;
         //define insert method
         public void Insert(T item)
         {
@@ -45,6 +46,37 @@ namespace HashTableAndBST2022
                     this.rightTree.Insert(item);
                 this.rightCount++;
             }
+        }
+        public bool IfExists(T element, BinarySearchTree<T> node)
+        {
+            if (node == null)
+                return false;
+            if (node.NodeData.Equals(element))
+            {
+                Console.WriteLine("Found the element in BST" + " " + node.NodeData);
+                result = true;
+                Console.WriteLine("result\n" + result);
+
+            }
+            else
+            {
+
+                Console.WriteLine("Current element is {0} in BST", node.NodeData);
+                Console.WriteLine("result:\n" + result);
+            }
+            if (element.CompareTo(node.NodeData) < 0)
+            {
+
+                IfExists(element, node.leftTree);
+            }
+            else
+            {
+
+                IfExists(element, node.rightTree);
+            }
+            return result;
+            Console.WriteLine("result:\n" + result);
+
         }
         public void Display()
         {
